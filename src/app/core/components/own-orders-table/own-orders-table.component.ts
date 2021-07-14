@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../service/data.service';
-import {DashFacade} from '../../pages/dash.facade';
+import {DashFacade} from '../../facade/dash.facade';
 
 export interface ProductElement {
   trackId: number;

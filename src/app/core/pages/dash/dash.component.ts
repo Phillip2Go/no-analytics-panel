@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {DashFacade} from '../dash.facade';
+import {DashFacade} from '../../facade/dash.facade';
 
 @Component({
   selector: 'app-dash',

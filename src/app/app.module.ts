@@ -29,7 +29,7 @@ import { MiniCardComponent } from './core/components/mini-card/mini-card.compone
 import {HttpClientModule} from '@angular/common/http';
 import {DataService} from './core/service/data.service';
 import { OwnOrdersTableComponent } from './core/components/own-orders-table/own-orders-table.component';
-import {DashFacade} from './core/pages/dash.facade';
+import {DashFacade} from './core/facade/dash.facade';
 
 @NgModule({
   declarations: [
