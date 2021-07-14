@@ -11,6 +11,7 @@ import {DashFacade} from '../dash.facade';
 export class DashComponent implements OnInit {
   pieChart = [];
   barChart = [];
+  tableData = [];
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -38,5 +39,7 @@ export class DashComponent implements OnInit {
     this.pieChart = this.dashFacade.getPieChartData();
     // @ts-ignore
     this.barChart = this.dashFacade.getBarChartData();
+    // @ts-ignore
+    this.tableData = this.dashFacade.getTableData(12);
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../service/data.service';
+import {DashFacade} from '../../pages/dash.facade';
 
 export interface ProductElement {
   trackId: number;
@@ -19,25 +20,12 @@ const ELEMENT_DATA: ProductElement[] = [
   styleUrls: ['./own-orders-table.component.scss']
 })
 export class OwnOrdersTableComponent implements OnInit {
+  @Input() data = [];
   displayedColumns: string[] = ['trackId', 'productName', 'productTag', 'timeStamp'];
   dataSource = [];
-  data: any;
-  constructor(private dataService: DataService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.fetchLatestOrders(12);
-  }
-
-  fetchLatestOrders(amount: number): void {
-    this.dataService.fetchLatestOrders(amount).subscribe(
-      response => {
-        this.data = response;
-        for (const val of this.data) {
-          ELEMENT_DATA.push(val);
-        }
-        // @ts-ignore
-        this.dataSource = ELEMENT_DATA;
-      }
-    );
+    this.dataSource = this.data;
   }
 }

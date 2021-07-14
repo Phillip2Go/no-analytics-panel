@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
-import {DataService} from '../../../service/data.service';
-import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-sales-traffic-chart',

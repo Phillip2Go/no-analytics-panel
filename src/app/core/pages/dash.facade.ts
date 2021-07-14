@@ -12,7 +12,6 @@ export class DashFacade {
     for (const tag of tags) {
       this.dataService.fetchTotalTagAmount(tag).subscribe(
         response => {
-          // console.log('fetchProducts()', response);
           pieChartData.push(response);
         }
       );
@@ -29,12 +28,25 @@ export class DashFacade {
     tags.forEach((tag, index) => {
       this.dataService.fetchTotalTagPurchase(tag).subscribe(
         response => {
-          // barChartData.push(response);
           barChartData[index].data.push(response);
         }
       );
     });
     return barChartData;
+  }
+  getTableData(numb: number): any[] {
+    const tableData: any[] = [];
+    let dataSource: any[] = [];
+    this.dataService.fetchLatestOrders(numb).subscribe(
+      response => {
+        for (const val of response) {
+          // console.log(val);
+          tableData.push(val);
+        }
+        dataSource = tableData;
+      }
+    );
+    return dataSource;
   }
 }
 
