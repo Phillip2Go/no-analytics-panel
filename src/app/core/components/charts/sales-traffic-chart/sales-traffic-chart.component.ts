@@ -10,36 +10,25 @@ import {any} from 'codelyzer/util/function';
   styleUrls: ['./sales-traffic-chart.component.scss']
 })
 export class SalesTrafficChartComponent implements OnInit {
+  @Input() data = [];
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
   public pieChartLabels: Label[] = ['Hip Hop', 'Electro', 'Rock'];
-  // @ts-ignore
   public pieChartData: SingleDataSet = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
   public chartColors: any[] = [
     {
-      backgroundColor: ['#f498ac', '#80bee7', '#fee1a0', '#FFFCC4', '#B9E8E0']
+      backgroundColor: ['#f498ac', '#80bee7', '#fee1a0']
     }];
 
-  constructor(private dataService: DataService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.fetchTotalTagAmount('hiphop');
-    this.fetchTotalTagAmount('electro');
-    this.fetchTotalTagAmount('rock');
-  }
-
-  fetchTotalTagAmount(tag: string): void {
-    this.dataService.fetchTotalTagAmount(tag).subscribe(
-      response => {
-        // console.log('fetchProducts()', response);
-        this.pieChartData.push(response);
-      }
-    );
+    this.pieChartData = this.data;
   }
 }

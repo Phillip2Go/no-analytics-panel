@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import {Component, Input, OnInit} from '@angular/core';
+import { ChartDataSets, ChartOptions, ChartType, PluginServiceGlobalRegistration } from 'chart.js';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
 import {DataService} from '../../../service/data.service';
 
@@ -9,35 +10,28 @@ import {DataService} from '../../../service/data.service';
   styleUrls: ['./store-sessions-chart.component.scss']
 })
 export class StoreSessionsChartComponent implements OnInit {
+  @Input() data = [];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
   };
   public barChartLabels: Label[] = ['2020', '2021'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  public barChartPlugins = [];
+  public barChartPlugins = [<PluginServiceGlobalRegistration> pluginDataLabels];
 
   public barChartData: ChartDataSets[] = [
-    {data: [65], label: 'Hip Hop'},
-    {data: [59], label: 'Electro'},
-    {data: [80], label: 'Rock'}
   ];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.fetchTotalTagPurchase('hiphop', 0);
-    this.fetchTotalTagPurchase('electro', 1);
-    this.fetchTotalTagPurchase('rock', 2);
-  }
-
-  fetchTotalTagPurchase(tag: string, index: number): void {
-    this.dataService.fetchTotalTagPurchase(tag).subscribe(
-      response => {
-        // @ts-ignore
-        this.barChartData[index].data.push(response);
-      }
-    );
+    this.barChartData = this.data;
   }
 }

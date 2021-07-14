@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ChartsModule } from 'ng2-charts';
-import { NavComponent } from './core/components/nav/nav.component';
+import { NavComponent } from './core/components/navbar/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +22,6 @@ import { ProductSalesChartComponent } from './core/components/charts/product-sal
 import { SalesTrafficChartComponent } from './core/components/charts/sales-traffic-chart/sales-traffic-chart.component';
 import { AnnualSalesChartComponent } from './core/components/charts/annual-sales-chart/annual-sales-chart.component';
 import { StoreSessionsChartComponent } from './core/components/charts/store-sessions-chart/store-sessions-chart.component';
-import { OrdersTableComponent } from './core/components/orders-table/orders-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -30,6 +29,7 @@ import { MiniCardComponent } from './core/components/mini-card/mini-card.compone
 import {HttpClientModule} from '@angular/common/http';
 import {DataService} from './core/service/data.service';
 import { OwnOrdersTableComponent } from './core/components/own-orders-table/own-orders-table.component';
+import {DashFacade} from './core/pages/dash.facade';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,6 @@ import { OwnOrdersTableComponent } from './core/components/own-orders-table/own-
     SalesTrafficChartComponent,
     AnnualSalesChartComponent,
     StoreSessionsChartComponent,
-    OrdersTableComponent,
     MiniCardComponent,
     OwnOrdersTableComponent
   ],
@@ -66,7 +65,7 @@ import { OwnOrdersTableComponent } from './core/components/own-orders-table/own-
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [DataService],
+  providers: [DataService, DashFacade],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

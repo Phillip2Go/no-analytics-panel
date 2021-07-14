@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import {DashFacade} from '../dash.facade';
 
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
   styleUrls: ['./dash.component.scss']
 })
-export class DashComponent {
+export class DashComponent implements OnInit {
+  pieChart = [];
+  barChart = [];
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +32,11 @@ export class DashComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private dashFacade: DashFacade) {}
+  ngOnInit(): void{
+    // @ts-ignore
+    this.pieChart = this.dashFacade.getPieChartData();
+    // @ts-ignore
+    this.barChart = this.dashFacade.getBarChartData();
+  }
 }
