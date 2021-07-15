@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {DataService} from '../service/data.service';
-import {any} from 'codelyzer/util/function';
 
 @Injectable()
 export class DashFacade {
@@ -40,7 +39,6 @@ export class DashFacade {
     this.dataService.fetchLatestOrders(numb).subscribe(
       response => {
         for (const val of response) {
-          // console.log(val);
           tableData.push(val);
         }
         dataSource = tableData;
